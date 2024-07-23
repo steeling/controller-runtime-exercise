@@ -18,6 +18,14 @@ You are the head of your dev ops department, and you'd like to provide your engi
 
 1. Use a custom queue that orders Reconciliation by name, lexicographically.
 
+1. Modify the reconciler to ignore `MyApp`'s with labels `reconciler: ignore`
+
+1. When a `MyApp` is deleted, remove all children.
+
+1. Make sure the status of MyApp is kept up to date.
+
+1. Migreate the controller runtime usage to leverage the [KubeBuilder](https://github.com/kubernetes-sigs/kubebuilder-declarative-pattern)
+
 ## Testing Your Understanding
 
 Answer the following questions to test your understanding. You may want to tweak your code or add print/debug statements to test how it works.
@@ -53,3 +61,5 @@ Answer the following questions to test your understanding. You may want to tweak
 1. What metrics does the controller runtime emit? Describe what some of those metrics represent
 
 1. What is leader election, and when would you use it?
+
+1. What is the difference between Kubebuilder and controller runtime?

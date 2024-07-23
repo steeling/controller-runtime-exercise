@@ -38,11 +38,14 @@ install-kube-linter:
 install-kind:
 	which kind || go install sigs.k8s.io/kind@v0.23.0
 
+.PHONY:
 kind-up: install-kind
 	./scripts/kind-with-registry.sh
 
+.PHONY:
 kind-down:
 	kind delete cluster --name my-app
 
+.PHONY:
 deploy-kind: kind-up docker-push
 	kubectl apply --context kind-my-app -f configs/...

@@ -1,0 +1,34 @@
+apiVersion: example.com/v1alpha1
+kind: MyApp
+metadata:
+  name: myapp-sample
+spec:
+  image: busybox
+  replicas: 2
+  args:
+    - sleep
+    - "10000"
+---
+apiVersion: example.com/v1alpha1
+kind: MyApp
+metadata:
+  name: myapp-sample-2
+spec:
+  image: busybox
+  replicas: 2
+  args:
+    - sleep
+    - "5"
+---
+apiVersion: example.com/v1alpha1
+kind: MyApp
+metadata:
+  name: myapp-bad-pod
+  labels:
+    reconciler: ignore
+spec:
+  image: steeling1/non-existant-image
+  replicas: 3
+  args:
+    - sleep
+    - "10000"
