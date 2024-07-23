@@ -8,7 +8,15 @@ The Controller Runtime can leverage both level and edge based reconiliation. Edg
 
 ## Your Task
 
+You are the head of your dev ops department, and you'd like to provide your engineers with a simpler interface for defining their services with a common set of K8s best practices. To do so, you plan to defin a new K8s resource `MyApp` that provides a smaller API surface, and a lot of defaults around resources, pod disruption budgets, and more.
+
+1. Modify the `Reconcile` method to create a Deployment with the provided image, a default set of resources (CPU and mem), and a pod disruption budget.
+
 1. Add some custom metrics to the metrics handler, and enable the metrics handler. What's an example metric you might want to keep track of?
+
+1. Enable leader election
+
+1. Use a custom queue that orders Reconciliation by name, lexicographically.
 
 ## Testing Your Understanding
 
@@ -43,3 +51,5 @@ Answer the following questions to test your understanding. You may want to tweak
 1. A ReconcileRequest only has the `NamespacedName`. How do you get the full object? Is this object cached, or result in an API call to the k8s master?
 
 1. What metrics does the controller runtime emit? Describe what some of those metrics represent
+
+1. What is leader election, and when would you use it?

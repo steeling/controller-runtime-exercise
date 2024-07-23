@@ -1,7 +1,7 @@
 timestamp:=$(shell date +%s)
 CTR_REGISTRY ?= localhost:5000
 IMAGE_TAG ?= kind-$(timestamp)
-my-app-controller-image=$(CTR_REGISTRY)//my-app-controller:$(IMAGE_TAG)
+my-app-controller-image=$(CTR_REGISTRY)/my-app-controller:$(IMAGE_TAG)
 
 .PHONY:
 build-dist:
@@ -15,7 +15,7 @@ docker-push: docker-build docker-push-no-build
 
 .PHONY:
 docker-build-only:
-	docker build -t $(my-app-controller-image) -f docker/Dockerfile.my-app-controller .
+	docker build -t $(my-app-controller-image) .
 
 docker-push-no-build: docker-build-only
 	docker push $(my-app-controller-image)
