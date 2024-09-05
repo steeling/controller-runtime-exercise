@@ -48,4 +48,4 @@ kind-down:
 
 .PHONY:
 deploy-kind: kind-up docker-push
-	kubectl apply --context kind-my-app -f configs/...
+	kubectl apply --context kind-my-app -f configs/crd/app.yaml
