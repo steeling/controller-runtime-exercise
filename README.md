@@ -34,17 +34,17 @@ Answer the following questions to test your understanding. You may want to tweak
 
 1. Which controller option controls how often Level-based reconciliation occurs: Resync after
 
-1. Which event types are passed in on level based reconciliation: Update, Create, Delete
+1. Which event types are passed in on level based reconciliation: Update, Create, Delete for edge based reconciliation but for level based it should be started periodically
 
 1. What is the difference between the `builder.Builder`'s `For`, `Owns` and `Watches` methods: For is for which resource kind is used i.e MyApps, Owns: the MyApp will own the CRs instances, 
 
 1. What happens if 10 updates to the same object occur in rapid succession (ie: before a single Reconcile occurs)? How many times is Reconcile called, and with which version of the object?: The events will be added to the reconciliation queue and will be handled in order for the atest version of the object
 
-1. How can you control the speed of reconciliation: Requeue after
+1. How can you control the speed of reconciliation: Requeue after or SyncPeriod
 
 1. How can you retry a failed reconiliation at a later time: Requeue after
 
-1. What happens to child objects if you delete a watched object: the child will also be delted
+1. What happens to child objects if you delete a watched object: the child will also be deleted
 
 1. Does the reconciler trigger on updates to the watched object, updates to the child object, or both? both
 
@@ -58,7 +58,10 @@ Answer the following questions to test your understanding. You may want to tweak
 
 1. A ReconcileRequest only has the `NamespacedName`. How do you get the full object? Is this object cached, or result in an API call to the k8s master?API call
 
-1. What metrics does the controller runtime emit? Describe what some of those metrics represent
+1. What metrics does the controller runtime emit? Describe what some of those metrics represent: Reconcile time: how long reconciliation took, controller_runtime_reconcile_total Total number of reconciliations per controller, go_gc_duration_seconds A summary of the pause duration of garbage collection cycles, go_goroutines Number of goroutines that currently exist, workqueue_depth Current depth of workqueue, workqueue_longest_running_processor_seconds How many seconds has the longest running processor for workqueue been running, workqueue_queue_duration_seconds How long in seconds an item stays in workqueue before being requested, workqueue_unfinished_work_seconds How many seconds of work has been done that is in progress and hasn't been observed by work_duration. Large values indicate stuck threads. One can deduce the number of stuck threads by observing the rate at which this increases,  workqueue_work_duration_seconds How long in seconds processing an item from workqueue takes.
+controller_runtime_terminal_reconcile_errors_total Total number of terminal reconciliation errors per controller
+ TYPE controller_runtime_terminal_reconcile_errors_total counter
+controller_runtime_terminal_reconcile_errors_total{controller="myapp"} 0
 
 1. What is leader election, and when would you use it? It is used to designate one instance of a controller as the leader to perform reconciliation, change cluster state, etc... It is used in distributed systems to prevent conflicts and ensure consistency
 
