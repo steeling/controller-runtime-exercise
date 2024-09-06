@@ -1,4 +1,4 @@
-apiVersion: example.com/v1alpha1
+apiVersion: myapp.example.com/v1
 kind: MyApp
 metadata:
   name: myapp-sample
@@ -10,7 +10,7 @@ spec:
     - sleep
     - "10000"
 ---
-apiVersion: example.com/v1alpha1
+apiVersion: myapp.example.com/v1
 kind: MyApp
 metadata:
   name: myapp-sample-2
@@ -22,19 +22,7 @@ spec:
     - sleep
     - "100"
 ---
-apiVersion: example.com/v1alpha1
-kind: MyApp
-metadata:
-  name: myapp-sample-3
-  namespace: default
-spec:
-  image: busybox
-  replicas: 3
-  args:
-    - sleep
-    - "10000"
----
-apiVersion: example.com/v1alpha1
+apiVersion: myapp.example.com/v1
 kind: MyApp
 metadata:
   name: myapp-bad-pod
