@@ -6,7 +6,15 @@ This repo contains a learn-by-doing style exercise to familiarize users with the
 
 The Controller Runtime can leverage both level and edge based reconiliation. Edge based watches for events, like resource creation, deletion, or updates and reconciles the state of the world to match the intent. Level based periodically reads in the current intent, and reconciles so the state of the world matches the intent.
 
-## Your Task
+## Getting Started
+
+### Initial Setup
+
+1. Create a kubernetes cluster via the Azure CLI or Azure Portal. There is optionally a command in the Makefile to deploy a KiND cluster, but it's recommended to run against a real cluster.
+
+1. Use the commands in the Makefile to build and deploy the CRD's, Controller, and example manifests. Then continue with the steps below.
+
+### Your Task
 
 You are the head of your dev ops department, and you'd like to provide your engineers with a simpler interface for defining their services with a common set of K8s best practices. To do so, you plan to defin a new K8s resource `MyApp` that provides a smaller API surface, and a lot of defaults around resources, pod disruption budgets, and more.
 
@@ -28,9 +36,7 @@ You are the head of your dev ops department, and you'd like to provide your engi
 
 ## Testing Your Understanding
 
-Answer the following questions to test your understanding. You may want to tweak your code or add print/debug statements to test how it works.
-
-1. What are the event types that the reconciler can recieve?
+Answer the following questions to test your understanding. You may want to tweak your code or add print/debug statements to test how it works. For each of the below questions also try to come up with an example scenario where this feature would be useful.
 
 1. Which controller option controls how often Level-based reconciliation occurs? 
 
@@ -58,8 +64,10 @@ Answer the following questions to test your understanding. You may want to tweak
 
 1. A ReconcileRequest only has the `NamespacedName`. How do you get the full object? Is this object cached, or result in an API call to the k8s master?
 
-1. What metrics does the controller runtime emit? Describe what some of those metrics represent
+1. What metrics does the controller runtime emit? Describe what some of those metrics represent. You can use the kubectl port-forward command to discover this.
 
 1. What is leader election, and when would you use it?
 
 1. What is the difference between Kubebuilder and controller runtime?
+
+1. How does the Pod Disruption Budget work during a rollout? What about scaling down nodes? And when evicting a pod?
